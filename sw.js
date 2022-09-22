@@ -1,11 +1,10 @@
-const CACHE_NAME = "static-cache-v1";
-const DATA_CACHE_NAME = "data-cache-v1";
+const CACHE_NAME = "static-cache-v2";
+const DATA_CACHE_NAME = "data-cache-v2";
 // 이게 중요한게 아니니까 안중요한 파일만 caching
 const FILES_TO_CACHE = [
   "/",
   "/icon/android-chrome-192x192.png",
   "/icon/android-chrome-512x512.png",
-  "/manifest.json",
   "/style.css",
 ];
 
