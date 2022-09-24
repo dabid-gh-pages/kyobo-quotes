@@ -1,3 +1,12 @@
+//helper function
+function makeTX(storeName, mode) {
+  let tx = db.transaction(storeName, mode);
+  tx.onerror = (err) => {
+    console.warn(err);
+  };
+  return tx;
+}
+
 // db configuration
 // add new quote
 
@@ -24,6 +33,7 @@ request.onupgradeneeded = (event) => {
 request.onsuccess = (event) => {
   db = event.target.result;
   quotesArray = getAllQuotes();
+  console.log({ quotesArray });
 };
 
 request.onerror = (event) => {
@@ -32,8 +42,8 @@ request.onerror = (event) => {
 //db save functions
 
 function saveQuote(quote) {
-  const transaction = db.transaction(["quote"], "readwrite");
-  const store = transaction.objectStore("quote");
+  const transaction = db.transaction(["quotes"], "readwrite");
+  const store = transaction.objectStore("quotes");
   store.add(quote);
 }
 
