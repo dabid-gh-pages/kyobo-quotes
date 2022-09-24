@@ -4,7 +4,7 @@
   "description": "- 모바일 Ebook 리더로 좋은 구절을 형광팬을 칠한 후 노션이나 나만의 노트장에 옮기는 작업이 매우 매우 고됨\r - 현재는 구절 클릭 -> 공유하기 -> 카카오톡으로 나에게 쓰기 -> 이후 전처리 과정까지 거쳐야 함\r → 그래서 바로 app으로 저장해두고, app에서는 그 책에 대한 구절 모두를 한번에 끄집어낼 수 있는 방법이 없을까 하여 기획하게 된 프로젝트",
   "main": "script.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "tailwindcss -i ./src/style.css -o ./public/tailwind.css -w --watch"
   },
   "repository": {
     "type": "git",
@@ -15,5 +15,9 @@
   "bugs": {
     "url": "https://github.com/dabid-gh-pages/kyobo-quotes/issues"
   },
-  "homepage": "https://github.com/dabid-gh-pages/kyobo-quotes#readme"
+  "homepage": "https://github.com/dabid-gh-pages/kyobo-quotes#readme",
+  "devDependencies": {
+    "tailwindcss": "^3.1.8",
+    "daisyui": "^2.31.0"
+  }
 }
