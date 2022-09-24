@@ -7,6 +7,7 @@
     <title>Document Title</title>
     <link rel="stylesheet" href="./tailwind.css" />
     <link rel="stylesheet" href="./style.css" />
+    <link rel="manifest" href="./manifest.json" />
   </head>
   <body>
     <div class="navbar bg-base-100">
@@ -47,45 +48,31 @@
       <div id="first" class="p-4">
         <div class="max-w-2xl mx-auto bg-white p-16">
           <form>
-            <div class="grid gap-6 mb-6 lg:grid-cols-1">
-              <label
-                for="first_name"
-                class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"
-                >Title</label
-              >
+            <div class="prose grid gap-6 mb-6 lg:grid-cols-1">
+              <h4>Title</h4>
+
               <input
                 type="text"
                 id="title-input"
-                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 placeholder="연금술사"
+                class="input input-bordered w-full max-w-xs"
               />
-              <label
-                for="message"
-                class="block text-sm font-medium text-gray-900 dark:text-gray-400"
-                >Quotes</label
-              >
+              <h4>Quotes</h4>
               <textarea
-                id="quote-input"
                 rows="4"
-                class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                placeholder="My Quotes..."
+                class="textarea textarea-bordered"
+                id="quote-input"
+                placeholder="자네가 무언가를 간절히 원할때 온 우주는자네의 소망이 실현되도록 도와준다네."
               ></textarea>
-              <label
-                for="last_name"
-                class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"
-                >Tag</label
-              >
+              <h4>Tag</h4>
+
               <input
                 type="text"
                 id="tag-input"
-                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                placeholder="부동산"
+                placeholder="자기계발"
+                class="w-full input input-bordered max-w-xs"
               />
-              <button
-                type="submit"
-                id="save-button"
-                class="text-white bg-gray-700 hover:bg-gray-800 focus:ring-4 focus:outline-none focus:ring-gray-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-gray-600 dark:hover:bg-gray-700 dark:focus:ring-gray-800"
-              >
+              <button type="submit" id="save-button" class="btn w-full">
                 Save
               </button>
             </div>
