@@ -1,0 +1,31 @@
+{
+    "orientation": "any",
+    "theme_color": "#fff",
+    "name": "kyobobook clipper",
+    "short_name": "kyobobook clipper",
+    "start_url": ".",
+    "display": "standalone",
+    "background_color": "#fff",
+    "description": "A news app.",
+    "icons": [
+        {
+            "src": "icon/android-chrome-512x512.png",
+            "sizes": "512x512",
+            "type": "image/png"
+        },
+        {
+            "src": "icon/android-chrome-192x192.png",
+            "sizes": "192x192",
+            "type": "image/png"
+        }
+    ],
+    "share_target": {
+        "action": "index.html",
+        "method": "GET",
+        "params": {
+            "title": "title",
+            "text": "text",
+            "url": "url"
+        }
+    }
+}
