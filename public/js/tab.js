@@ -19,12 +19,5 @@ tabTogglers.forEach(function (toggler) {
       }
       tabContents.children[i].classList.add("hidden");
     }
-    e.target.parentElement.classList.add(
-      "border-t",
-      "border-r",
-      "border-l",
-      "-mb-px",
-      "bg-white"
-    );
   });
 });

@@ -1,30 +1,65 @@
-// const testQuotes = [
-//   {
-//     id: 1,
-//     name: "아이디어 불패의 법칙",
-//     content: "전략 1 : 생각은 글로벌하게, 테스트는 로컬하게",
-//     datetime: "2022-09-24T01:19:53.184Z",
-//   },
-//   {
-//     id: 2,
-//     name: "아이디어 불패의 법칙",
-//     content:
-//       "대부분의 신제품이 실패하는 것은 설계나 개발, 마케팅이 허술해서가 아니라 그냥 그 제품이 시장이 원하는 제품이 아니기 때문이다",
-//     datetime: "2022-09-24T01:19:53.184Z",
-//   },
+// remove a quote
+document.querySelector(".quotes").addEventListener("click", (evt) => {
+  if (evt.target.classList.contains("mdi-delete")) {
+    const key = evt.target.getAttribute("data-id");
+    //console.log(id);
+    console.log({ key });
+    // 1) remove from page
+    const targetQuote = document.querySelector(`.quote[data-id="${key}"]`);
+    console.log(targetQuote);
+    targetQuote.remove();
 
-//   {
-//     id: 3,
-//     name: "아이디어 불패의 법칙",
-//     content:
-//       "그렇다 해도 여러분의 실행이 어설프거나, 경쟁자가 여러분보다 더 잘 실행에 옮긴다면 결국 여러분이 실패할 수도 있다. 하지만 ‘안 될 놈’을 쥐고 있을 때의 확률에 비하면 이는 어마어마한 비교 우위다. 말이 나왔으니 말인데, ‘안 될 놈’을 한번 보고 가자.",
-//     datetime: "2022-09-24T01:19:53.184Z",
-//   },
-//   {
-//     id: 4,
-//     name: "아이디어 불패의 법칙",
-//     content:
-//       "시장 실패의 법칙으로부터 벗어날 방법은 없다. 여러분이 가지는 대부분의 아이디어는 시장으로부터 거절당할 것이고, 여러분은 상처를 입을 것이다. 하지만 이 책에 나오는 여러 도구와 전략들이 이런 불쾌하지만 불가피한 과정의 일부를 덜 고통스럽고, 더 빠르고, 더 쉽게 지나도록 해줄 것이다. 그러니 미루지 마라. 만약 여러분의 아이디어가 거절당할 운명이라면 나중보다는 지금 현실을 깨닫는 편이 낫다.",
-//     datetime: "2022-09-24T01:19:53.184Z",
-//   },
-// ];
+    // 2) delete from index
+    let tx = makeTX("quotes", "readwrite");
+    tx.oncomplete = (ev) => {
+      //transaction for reading all objects is complete
+    };
+    let store = tx.objectStore("quotes");
+    let getReq = store.delete(key);
+    //returns an array
+    //option can pass in a key or a keyRange
+    getReq.onsuccess = (ev) => {
+      console.log("successfully deleted an object");
+    };
+    getReq.onerror = (err) => {
+      console.warn(err);
+    };
+  }
+});
+
+//input is array of quote objects
+const renderQuotes = (quoteArray) => {
+  document.querySelector(".quotes").innerHTML = quoteArray
+    .map((data) => {
+      return `
+      <div class="quote w-full mx-auto rounded-lg bg-gray-100 shadow p-5 text-gray-800" data-id="${
+        data.id
+      }" style="max-width: 400px">
+          <div class="w-full flex mb-4">
+              <div class="flex-grow">
+                  <h6 class="font-bold text-md">${data.title}</h6>
+              </div>
+
+              <div class="w-6 text-right">
+              <i class="mdi mdi-delete text-gray-400 text-3xl"  data-id="${
+                data.id
+              }"></i>
+          </div>
+          </div>
+          <div class="w-full mb-4">
+              <p class="text-sm">${data.quote}</p>
+          </div>
+          <div class="w-full">
+              <p class="text-xs text-gray-500 text-right">${new Date(
+                data.dateTime
+              ).toLocaleDateString("ko-KR", {
+                year: "numeric",
+                month: "numeric",
+                day: "numeric",
+              })}</p>
+          </div>
+      </div>
+      `;
+    })
+    .join("\n");
+};
