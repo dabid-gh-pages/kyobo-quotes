@@ -27,13 +27,11 @@ const request = indexedDB.open("kyobo", 1, (updradedDb) => {
 
 request.onupgradeneeded = (event) => {
   const db = event.target.result;
-  db.createObjectStore("quotes", { autoIncrement: true });
+  db.createObjectStore("quotes", { keyPath: "id" });
 };
 
 request.onsuccess = (event) => {
   db = event.target.result;
-  quotesArray = getAllQuotes();
-  console.log({ quotesArray });
 };
 
 request.onerror = (event) => {
@@ -45,26 +43,4 @@ function saveQuote(quote) {
   const transaction = db.transaction(["quotes"], "readwrite");
   const store = transaction.objectStore("quotes");
   store.add(quote);
-}
-
-// db read function
-
-// transaction -> prepare to read / or write
-// objectStore -> getting the actual table
-function getAllQuotes() {
-  console.log({ db });
-  const request = db.transaction("quotes").objectStore("quotes").getAll();
-
-  request.onsuccess = () => {
-    const quotes = request.result;
-
-    console.log("Got all the quotes");
-    console.table(quotes);
-
-    return quotes;
-  };
-
-  request.onerror = (err) => {
-    console.error(`Error to get all quotes: ${err}`);
-  };
 }

@@ -46,7 +46,7 @@
     <!-- Tab Contents -->
     <div id="tab-contents">
       <div id="first" class="p-4">
-        <div class="max-w-2xl mx-auto bg-white p-16">
+        <div class="max-w-2xl mx-auto bg-white p-6">
           <form>
             <div class="prose grid gap-6 mb-6 lg:grid-cols-1">
               <h4>Title</h4>
@@ -82,14 +82,15 @@
 
       <div id="second" class="hidden p-4">
         <div class="max-w-2xl mx-auto bg-white pb-8">
-          <div class="form-control mb-8">
+          <div class="form-control mb-8 gap-4">
             <div class="input-group justify-center">
               <input
+                id="search-input"
                 type="text"
                 placeholder="Search…"
                 class="input input-bordered"
               />
-              <button class="btn btn-square">
+              <button id="search-button" class="btn btn-square">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   class="h-6 w-6"
@@ -106,6 +107,11 @@
                 </svg>
               </button>
             </div>
+            <div class="flex justify-center items-center">
+              <button type="submit" id="share-button" class="btn btn-wide">
+                Share
+              </button>
+            </div>
           </div>
           <div class="quotes p-4 grid gap-6 mb-6 lg:grid-cols-2"></div>
         </div>
@@ -116,6 +122,6 @@
     <script src="./js/home.js"></script>
     <script src="./js/tab.js"></script>
     <script src="./js/quotes.js"></script>
-    <script src="./js/saveQuote.js"></script>
+    <script src="./js/buttons.js"></script>
   </body>
 </html>

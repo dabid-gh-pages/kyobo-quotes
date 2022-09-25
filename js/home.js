@@ -1,3 +1,5 @@
+let globalObject = [];
+
 window.addEventListener("DOMContentLoaded", () => {
   // dom content loaded when shared
 
@@ -11,7 +13,6 @@ window.addEventListener("DOMContentLoaded", () => {
     return {
       quote,
       title,
-      date: new Date().toISOString(),
     };
   };
 
@@ -43,38 +44,11 @@ document.querySelector('#tabs a[href="#second"]').onclick = function () {
   getReq.onsuccess = (ev) => {
     //getAll was successful
     let request = ev.target; //request === getReq === ev.target
-    console.log({ request });
-    document.querySelector(".quotes").innerHTML = request.result
-      .map((data) => {
-        return `
-        <div class="w-full mx-auto rounded-lg bg-gray-100 shadow p-5 text-gray-800" style="max-width: 400px">
-            <div class="w-full flex mb-4">
-                <div class="flex-grow pl-3">
-                    <h6 class="font-bold text-md">${data.title}</h6>
-                </div>
-                <div class="w-9 text-right">
-                    <i class="mdi mdi-pencil text-gray-400 text-3xl"></i>
-                </div>
-                <div class="w-6 text-right">
-                <i class="mdi mdi-delete text-gray-400 text-3xl"></i>
-            </div>
-            </div>
-            <div class="w-full mb-4">
-                <p class="text-sm">${data.quote}</p>
-            </div>
-            <div class="w-full">
-                <p class="text-xs text-gray-500 text-right">${new Date(
-                  data.dateTime
-                ).toLocaleDateString("ko-KR", {
-                  year: "numeric",
-                  month: "numeric",
-                  day: "numeric",
-                })}</p>
-            </div>
-        </div>
-        `;
-      })
-      .join("\n");
+    console.log(request);
+
+    // store to global object
+    globalObject = request.result;
+    renderQuotes(request.result);
   };
   getReq.onerror = (err) => {
     console.warn(err);
