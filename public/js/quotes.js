@@ -16,6 +16,12 @@ document.querySelector(".quotes").addEventListener("click", (evt) => {
     };
     let store = tx.objectStore("quotes");
     let getReq = store.delete(key);
+
+    // 3) remove from localarray object
+    globalStore.localArray = globalStore.localArray.filter(item => {
+      return item.id !== key
+    })
+
     //returns an array
     //option can pass in a key or a keyRange
     getReq.onsuccess = (ev) => {
@@ -32,31 +38,30 @@ const renderQuotes = (quoteArray) => {
   document.querySelector(".quotes").innerHTML = quoteArray
     .map((data) => {
       return `
-      <div class="quote w-full mx-auto rounded-lg bg-gray-100 shadow p-5 text-gray-800" data-id="${
-        data.id
-      }" style="max-width: 400px">
+      <div class="quote w-full mx-auto rounded-lg bg-gray-100 shadow p-5 text-gray-800" data-id="${data.id
+        }" style="max-width: 400px">
           <div class="w-full flex mb-4">
               <div class="flex-grow">
                   <h6 class="font-bold text-md">${data.title}</h6>
               </div>
 
               <div class="w-6 text-right">
-              <i class="mdi mdi-delete text-gray-400 text-3xl"  data-id="${
-                data.id
-              }"></i>
+              <i class="mdi mdi-delete text-gray-400 text-3xl"  data-id="${data.id
+        }"></i>
           </div>
           </div>
           <div class="w-full mb-4">
               <p class="text-sm">${data.quote}</p>
           </div>
-          <div class="w-full">
+          <div class="flex justify-between">
+          <p class="text-sm text-blue-600">${data.tag || ""}</p>        
               <p class="text-xs text-gray-500 text-right">${new Date(
-                data.dateTime
-              ).toLocaleDateString("ko-KR", {
-                year: "numeric",
-                month: "numeric",
-                day: "numeric",
-              })}</p>
+          data.dateTime
+        ).toLocaleDateString("ko-KR", {
+          year: "numeric",
+          month: "numeric",
+          day: "numeric",
+        })}</p>
           </div>
       </div>
       `;
