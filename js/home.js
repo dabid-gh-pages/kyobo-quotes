@@ -1,4 +1,8 @@
-let globalObject = [];
+let globalStore = {};
+
+
+//  globalStore.localArray = array from local storage
+// globalStore.filteredArray = array after filtering
 
 window.addEventListener("DOMContentLoaded", () => {
   // dom content loaded when shared
@@ -47,7 +51,8 @@ document.querySelector('#tabs a[href="#second"]').onclick = function () {
     console.log(request);
 
     // store to global object
-    globalObject = request.result;
+    globalStore.localArray = request.result;
+    console.log(globalStore.localArray)
     renderQuotes(request.result);
   };
   getReq.onerror = (err) => {

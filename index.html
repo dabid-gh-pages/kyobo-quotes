@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document Title</title>
+    <title>Q-Clipper</title>
     <link rel="stylesheet" href="./tailwind.css" />
     <link rel="stylesheet" href="./style.css" />
     <link rel="manifest" href="./manifest.json" />
@@ -16,12 +16,12 @@
       </div>
       <div class="flex-none">
         <ul id="tabs" class="menu menu-horizontal p-0">
-          <li><a id="default-tab" href="#first">Add </a></li>
+          <li><a id="default-tab" href="#first">추가 </a></li>
 
-          <li><a href="#second">Search </a></li>
+          <li><a href="#second">검색 </a></li>
           <li tabindex="0">
             <a href="#third">
-              More
+              더보기
               <svg
                 class="fill-current"
                 xmlns="http://www.w3.org/2000/svg"
@@ -49,7 +49,7 @@
         <div class="max-w-2xl mx-auto bg-white p-6">
           <form>
             <div class="prose grid gap-6 mb-6 lg:grid-cols-1">
-              <h4>Title</h4>
+              <h4>제목</h4>
 
               <input
                 type="text"
@@ -57,14 +57,14 @@
                 placeholder="연금술사"
                 class="input input-bordered w-full max-w-xs"
               />
-              <h4>Quotes</h4>
+              <h4>구절</h4>
               <textarea
                 rows="4"
                 class="textarea textarea-bordered"
                 id="quote-input"
                 placeholder="자네가 무언가를 간절히 원할때 온 우주는자네의 소망이 실현되도록 도와준다네."
               ></textarea>
-              <h4>Tag</h4>
+              <h4>태그</h4>
 
               <input
                 type="text"
@@ -73,7 +73,7 @@
                 class="w-full input input-bordered max-w-xs"
               />
               <button type="submit" id="save-button" class="btn w-full">
-                Save
+                저장하기
               </button>
             </div>
           </form>
@@ -82,14 +82,15 @@
 
       <div id="second" class="hidden p-4">
         <div class="max-w-2xl mx-auto bg-white pb-8">
-          <div class="form-control mb-8 gap-4">
+          <div class="form-control flex flex-col items-center p-8 gap-4">
             <div class="input-group justify-center">
               <input
                 id="search-input"
                 type="text"
-                placeholder="Search…"
+                placeholder="검색"
                 class="input input-bordered"
               />
+
               <button id="search-button" class="btn btn-square">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -107,9 +108,30 @@
                 </svg>
               </button>
             </div>
+            <div id="typeradio" class="flex w-full justify-center gap-6">
+              <label for="titleRadio">
+                <input
+                  type="radio"
+                  name="searchtype"
+                  id="titleRadio"
+                  value="title"
+                  checked
+                />
+                제목
+              </label>
+              <label for="tagRadio">
+                <input
+                  type="radio"
+                  name="searchtype"
+                  id="tagRadio"
+                  value="tag"
+                />
+                태그
+              </label>
+            </div>
             <div class="flex justify-center items-center">
               <button type="submit" id="share-button" class="btn btn-wide">
-                Share
+                공유하기
               </button>
             </div>
           </div>
